@@ -14,7 +14,6 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -35,10 +34,10 @@ img {
   margin: 3.5%;
 }
 .header-logo {
-    float: left;
+  float: left;
 }
 .main-navbar {
-    float: right;
+  float: right;
 }
 .topnav a {
   float: left;
@@ -68,20 +67,24 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
-  .topnav a {display: none;}
+@media screen and (max-width: 900px) {
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
   }
 }
 
-@media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
+@media screen and (max-width: 900px) {
+  .topnav.responsive {
+    position: relative;
+  }
   .topnav.responsive .icon {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 5%;
+    top: 5%;
   }
   .topnav.responsive a {
     float: none;
@@ -90,16 +93,16 @@ img {
   }
 }
 
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
+@media screen and (max-width: 900px) {
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
+    margin-top: 0px;
   }
-} 
+}
 
 main {
   font-size: 130%;
@@ -111,8 +114,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -226,12 +227,12 @@ input {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-/* 
-input[data-error]::after {
-    content: attr(data-error);
-    font-size: 0.4em;
-    color: red;
-} */
+.error {
+  display: block;
+  font-size: 14px;
+  color: red;
+  padding-top: 4px;
+}
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -304,6 +305,7 @@ input[data-error]::after {
   height: 32px;
   opacity: 1;
   cursor: pointer;
+  z-index: 1;
   transform: scale(0.7);
 }
 .close:before,
@@ -346,6 +348,44 @@ input[data-error]::after {
 }
 .select-selected {
   background-color: #fff;
+}
+
+/* Modal de confirmation */
+
+.modal-submitted {
+  display: none;
+  margin: 5% auto;
+  width: 100%;
+  max-width: 500px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  background: #232323;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  height: 738px;
+  padding: 50% 8% 15px;
+  font-size: 30px;
+  font-weight: normal;
+  text-align: center;
+  margin: 15px auto;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  justify-items: center;
+}
+.btn-close {
+  background: #fe142f;
+  display: block;
+  margin: 0 auto;
+  border-radius: 7px;
+  font-size: 1rem;
+  padding: 12px 82px;
+  color: #fff;
+  cursor: pointer;
+  border: 0;
 }
 
 /* Style the arrow inside the select element: */
@@ -478,7 +518,7 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 950px) {
   .hero-section {
     display: block;
     box-shadow: unset;
@@ -527,3 +567,67 @@ footer {
   }
 }
 
+/* mobile view modal*/
+
+@media screen and (max-width: 900px) {
+  .content {
+    z-index: 2;
+    max-width: none;
+    display: block;
+    position: relative;
+    bottom: 0;
+    padding-top: 50px;
+    margin-bottom: 0%;
+  }
+  .modal-submitted {
+    height: calc(100vh - 95px);
+  }
+  .topnav {
+    z-index: 2;
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    margin: 0px;
+    padding: 15px;
+    top: 0;
+  }
+  .topnav.responsive {
+    z-index: 2;
+    background-color: white;
+    width: 100%;
+    margin: 0px;
+    padding: 15px;
+    display: grid;
+    position: fixed;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    line-height: 24px;
+  }
+  .topnav.responsive .header-logo {
+    grid-area: 1/1/2/3;
+  }
+  .topnav.responsive .main-navbar {
+    grid-area: 2/1/3/3;
+  }
+  .main-navbar {
+    float: none;
+  }
+  .close {
+    display: block;
+    position: absolute;
+    float: right;
+    top: 70px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .topnav {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+  .header-logo img {
+    width: 100%;
+  }
+  .topnav.responsive .header-logo img {
+    width: 80%;
+  }
+}
