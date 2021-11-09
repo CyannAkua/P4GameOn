@@ -61,17 +61,16 @@ p {
   display: none;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .topnav a {
     display: none;
   }
   .topnav a.icon {
     float: right;
     display: block;
-  }
-}
+    margin-top: 0px;
 
-@media screen and (max-width: 900px) {
+  }
   .topnav.responsive {
     position: relative;
   }
@@ -86,18 +85,6 @@ p {
     text-align: left;
   }
 }
-
-@media screen and (max-width: 900px) {
-  .topnav a {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: 0px;
-  }
-}
-
 main {
   font-size: 130%;
   font-weight: bolder;
@@ -516,7 +503,7 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .hero-section {
     display: block;
     box-shadow: unset;
@@ -567,7 +554,7 @@ footer {
 
 /* mobile view modal*/
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 950px) {
   .hero-section {
     height: auto;
     min-height: auto;
