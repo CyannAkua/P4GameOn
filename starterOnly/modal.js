@@ -47,51 +47,80 @@ function closeModal() {
 
 // validation
 function validate() {
-  
-  // regular expressions
-  var mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  var name = /^[a-zA-Z]{1}[a-zA-Z'À-ÿ -]+$/;
+  //run all change function to make sure
+  changeFormFirst();
+  changeFormLast();
+  changeFormMail();
+  changeFormTimes();
+  changeFormCity();
+  changeFormCondition();
 
-  // validate first name
+  //confirm if everything is valide, if it is, opens the thanking modal
+  if (
+    (FirstNIsValid &&
+      LastNIsValid &&
+      MailIsValid &&
+      DateIsValid &&
+      TimesIsValid &&
+      CityIsValid &&
+      ConditionIsValid) == false
+  ) {
+    return false;
+  } else {
+    modalBody[0].style.display = "none";
+    modalSbm[0].style.display = "flex";
+    formSignup[0].reset();
+    return false;
+  }
+}
+
+// validation on change, so it mark the error directly
+formFirst.addEventListener("change", changeFormFirst);
+function changeFormFirst() {
+  var name = /^[A-Z]{1}[a-zA-Z'À-ÿ -]+$/;
   if (!formFirst.value.match(name)) {
     formFirst.style.border = "red 2px solid";
     formError[0].innerHTML =
       "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
     FirstNIsValid = false;
-  }
-  if (formFirst.value.match(name)) {
+  } else {
     formFirst.style.border = "none";
     formError[0].innerHTML = "";
     FirstNIsValid = true;
   }
+}
 
-  // validate last name
+formLast.addEventListener("change", changeFormLast);
+function changeFormLast() {
+  var name = /^[A-Z]{1}[a-zA-Z'À-ÿ -]+$/;
   if (!formLast.value.match(name)) {
     formLast.style.border = "red 2px solid";
     formError[1].innerHTML =
       "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
     LastNIsValid = false;
-  }
-  if (formLast.value.match(name)) {
+  } else {
     formLast.style.border = "none";
     formError[1].innerHTML = "";
     LastNIsValid = true;
   }
+}
 
-  // validate mail
+formMail.addEventListener("change", changeFormMail);
+function changeFormMail() {
+  var mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   if (formMail.value.match(mailFormat)) {
     formMail.style.border = "none";
     formError[2].innerHTML = "";
     MailIsValid = true;
-  }
-  if (!formMail.value.match(mailFormat)) {
+  } else {
     formMail.style.border = "red 2px solid";
     formError[2].innerHTML = "Cette adresse mail est incorrecte.";
     MailIsValid = false;
   }
+}
 
-  // validate date
-  var DateIsValid = false;
+formDate.addEventListener("change", changeFormDate);
+function changeFormDate() {
   DateValid();
   function DateValid() {
     let val = formDate.value;
@@ -106,9 +135,10 @@ function validate() {
       formError[3].innerHTML = "";
     }
   }
+}
 
-  // validate number of times competed
-  var TimesIsValid = false;
+formTimes.addEventListener("change", changeFormTimes);
+function changeFormTimes() {
   TimesValid();
   function TimesValid() {
     let val = formTimes.value;
@@ -127,7 +157,9 @@ function validate() {
       formError[4].innerHTML = "";
     }
   }
-  //validate if one of the the city is checked
+}
+
+function changeFormCity() {
   var formCitySelected = false;
   for (let i = 0; i < formCity.length; i++) {
     if (formCity[i].checked == true) formCitySelected = true;
@@ -140,8 +172,10 @@ function validate() {
     formError[5].innerHTML = "";
     CityIsValid = true;
   }
+}
 
-  //validate if the terms and condition are checked
+formCondition.addEventListener("change", changeFormCondition);
+function changeFormCondition() {
   if (formCondition.checked == false) {
     formError[6].innerHTML =
       "Vous devez vérifier que vous acceptez les termes et conditions.";
@@ -150,23 +184,5 @@ function validate() {
   if (formCondition.checked == true) {
     formError[6].innerHTML = "";
     ConditionIsValid = true;
-  }
-
-  //confirm if everything is valide, if it is, opens the thanking modal
-  if (
-    (FirstNIsValid &&
-      LastNIsValid &&
-      MailIsValid &&
-      DateIsValid &&
-      TimesIsValid &&
-      CityIsValid &&
-      ConditionIsValid) == false
-  ) {
-    return false;
-  } else {
-    modalBody[0].style.display = "none";
-    modalSbm[0].style.display = "flex";
-    formSignup[0].reset();
-    return false;
   }
 }
